@@ -20,8 +20,8 @@ include "inc/koneksi.php";
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SI PERPUSTAKAAN</title>
-	<link rel="icon" href="dist/img/logo.png">
+	<title>Sistem Informasi Perpustakaan</title>
+	<link rel="icon" href="dist/img/logo-doang.png">
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<!-- Bootstrap 3.3.6 -->
@@ -50,36 +50,32 @@ include "inc/koneksi.php";
 		<header class="main-header">
 			<!-- Logo -->
 			<a href="index.php" class="logo">
+				<span class="logo-mini">
+					<img src="dist/img/logo-doang.png" width="30px">
+				</span>
 				<span class="logo-lg">
 					<img src="dist/img/logo-doang.png" width="37px">
 					<b>SIPERPUS</b>
 				</span>
 			</a>
-			<!-- Header Navbar: style can be found in header.less -->
+						<!-- Header Navbar: style can be found in header.less -->
 			<nav class="navbar navbar-static-top">
-				<!-- Sidebar toggle button-->
-				<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</a>
+    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </a>
 
-				<div class="navbar-custom-menu">
-					<ul class="nav navbar-nav">
-						<!-- Messages: style can be found in dropdown.less-->
-						<li class="dropdown messages-menu">
-							<a class="dropdown-toggle">
-								<span>
-									<b>
-										Sistem Informasi Perpustakaan
-									</b>
-								</span>
-							</a>
-						</li>
-					</ul>
-				</div>
-			</nav>
+    <div style="float: left; padding: 15px 15px; color: white; font-size: 16px;">
+        <b>Sistem Informasi Perpustakaan</b>
+    </div>
+
+    <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+            </ul>
+    </div>
+</nav>
 		</header>
 
 		<!-- =============================================== -->

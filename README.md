@@ -5,13 +5,16 @@ Aplikasi Perpustakaan Berbasis Website
 
 Login admin
 username : Ryan Pradnyana
-password : user123
-username : ryan
-password : 123
+password : admin123
+
 
 login petugas
 username : naufal
 password : Abidian
+
+
+open terminal
+git push origin main
 
 
 
