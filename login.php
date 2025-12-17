@@ -11,7 +11,7 @@ include "inc/koneksi.php";
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Login | SI Perpustakaan</title>
-	<link rel="icon" href="dist/img/logo.png">
+	<link rel="icon" href="dist/img/logo-siperpus.png">
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<!-- Bootstrap 3.3.6 -->
@@ -44,7 +44,7 @@ include "inc/koneksi.php";
 		<!-- /.login-logo -->
 		<div class="login-box-body">
 			<center>
-				<img src="dist/img/logo.png" width=160px />
+				<img src="dist/img/logo-siperpus.png" width=160px />
 			</center>
 			<br>
 			<p class="login-box-msg">Login System</p>

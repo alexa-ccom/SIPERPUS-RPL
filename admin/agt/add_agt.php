@@ -34,13 +34,10 @@ if (strlen($tambah) == 1){
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
-			<!-- general form elements -->
 			<div class="box box-info">
 				<div class="box-header with-border">
 					<h3 class="box-title">Tambah anggota</h3>
 				</div>
-				<!-- /.box-header -->
-				<!-- form start -->
 				<form action="" method="post" enctype="multipart/form-data">
 					<div class="box-body">
 						<div class="form-group">
@@ -57,49 +54,54 @@ if (strlen($tambah) == 1){
 						<div class="form-group">
 							<label>Jenis Kelamin</label>
 							<select name="jekel" id="jekel" class="form-control" required>
-								<option>-- Pilih --</option>
+								<option value="">-- Pilih --</option>
 								<option>Laki-laki</option>
 								<option>Perempuan</option>
 							</select>
 						</div>
 
-						<div class="form-group">
-							<label>Kelas</label>
-							<input type="text" name="kelas" id="kelas" class="form-control" placeholder="Kelas">
+                        <div class="form-group">
+							<label>Jurusan</label>
+							<select name="jurusan" id="jurusan" class="form-control" required>
+								<option value="">-- Pilih Jurusan --</option>
+								<option>Sistem & Teknologi Informasi Bisnis</option>
+								<option>Manajemen Retail</option>
+								<option>Bisnis Digital</option>
+								<option>Desain Komunikasi Visual</option>
+                                <option>Desain Mode</option>
+                                <option>Desain Interior</option>
+                                <option>Arsitektur</option>
+							</select>
 						</div>
-
-						<div class="form-group">
+                        <div class="form-group">
 							<label>No HP</label>
 							<input type="number" name="no_hp" id="no_hp" class="form-control" placeholder="No HP">
 						</div>
 
 					</div>
-					<!-- /.box-body -->
-
 					<div class="box-footer">
 						<input type="submit" name="Simpan" value="Simpan" class="btn btn-info">
 						<a href="?page=MyApp/data_agt" class="btn btn-warning">Batal</a>
 					</div>
 				</form>
 			</div>
-			<!-- /.box -->
-</section>
+			</section>
 
 <?php
-
     if (isset ($_POST['Simpan'])){
-    
-        $sql_simpan = "INSERT INTO tb_anggota (id_anggota,nama,jekel,kelas,no_hp) VALUES (
+        
+        // Pastikan nama kolom di database sesuai ('jurusan' atau 'kelas')
+        $sql_simpan = "INSERT INTO tb_anggota (id_anggota,nama,jekel,jurusan,no_hp) VALUES (
            '".$_POST['id_anggota']."',
           '".$_POST['nama']."',
           '".$_POST['jekel']."',
-          '".$_POST['kelas']."',
+          '".$_POST['jurusan']."', 
           '".$_POST['no_hp']."')";
+          
         $query_simpan = mysqli_query($koneksi, $sql_simpan);
         mysqli_close($koneksi);
 
     if ($query_simpan){
-
       echo "<script>
       Swal.fire({title: 'Tambah Data Berhasil',text: '',icon: 'success',confirmButtonText: 'OK'
       }).then((result) => {
@@ -116,5 +118,5 @@ if (strlen($tambah) == 1){
           }
       })</script>";
     }
-  }
-    
+  } 
+?>

@@ -51,7 +51,7 @@ include "inc/koneksi.php";
 			<!-- Logo -->
 			<a href="index.php" class="logo">
 				<span class="logo-lg">
-					<img src="dist/img/logo.png" width="37px">
+					<img src="dist/img/logo-doang.png" width="37px">
 					<b>SIPERPUS</b>
 				</span>
 			</a>

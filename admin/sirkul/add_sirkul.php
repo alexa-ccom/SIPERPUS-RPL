@@ -1,17 +1,24 @@
 <?php
-//kode 9 digit
-  
-$carikode = mysqli_query($koneksi,"SELECT id_sk FROM tb_sirkulasi order by id_sk desc");
+// Ambil ID terakhir yang berawalan 'A' saja agar tidak bentrok dengan ID berawalan 'S'
+$carikode = mysqli_query($koneksi, "SELECT id_sk FROM tb_sirkulasi WHERE id_sk LIKE 'A%' ORDER BY id_sk DESC LIMIT 1");
 $datakode = mysqli_fetch_array($carikode);
-$kode = $datakode['id_sk'];
-$urut = substr($kode, 1, 3);
-$tambah = (int) $urut + 1;
 
+if ($datakode) {
+    $kode = $datakode['id_sk'];
+    // Mengambil 3 angka setelah huruf 'A'
+    $urut = substr($kode, 1, 3);
+    $tambah = (int) $urut + 1;
+} else {
+    // Jika belum ada ID berawalan 'A', mulai dari 1
+    $tambah = 1;
+}
+
+// Formating ke A00X
 if (strlen($tambah) == 1){
-    $format = "A"."00".$tambah;
-}else if (strlen($tambah) == 2){
-    $format = "A"."0".$tambah;
-}elseif (strlen($tambah) == 3){  
+    $format = "A00".$tambah;
+} else if (strlen($tambah) == 2){
+    $format = "A0".$tambah;
+} else {
     $format = "A".$tambah;
 }
 ?>
@@ -117,46 +124,58 @@ if (strlen($tambah) == 1){
 </section>
 
 <?php
-
     if (isset ($_POST['Simpan'])){
 
-		//menangkap post tgl pinjam
-		$tgl_p=$_POST['tgl_pinjam'];
-		//membuat tgl kembali
-		$tgl_k=date('Y-m-d', strtotime('+7 days', strtotime($tgl_p)));
-		$tgl_hk=date('Y-m-d');
-    
-       $sql_simpan = "INSERT INTO tb_sirkulasi (id_sk,id_buku,id_anggota,tgl_pinjam,status,tgl_kembali) VALUES (
-           '".$_POST['id_sk']."',
-          '".$_POST['id_buku']."',
-          '".$_POST['id_anggota']."',
-          '".$_POST['tgl_pinjam']."',
-          'PIN',
-          '".$tgl_k."');";
-		$sql_simpan .= "INSERT INTO log_pinjam (id_buku,id_anggota,tgl_pinjam) VALUES (
-			'".$_POST['id_buku']."',
-			'".$_POST['id_anggota']."',
-            '".$_POST['tgl_pinjam']."')";   
-        $query_simpan = mysqli_multi_query($koneksi, $sql_simpan);
-        mysqli_close($koneksi);
+        //menangkap post tgl pinjam
+        $tgl_p = $_POST['tgl_pinjam'];
+        //membuat tgl kembali
+        $tgl_k = date('Y-m-d', strtotime('+7 days', strtotime($tgl_p)));
+        
+        // --- BAGIAN INI DIPERBAIKI AGAR TIDAK EROR FATAL ---
+        
+        // 1. Simpan ke tabel sirkulasi dulu
+        $sql_sirkulasi = "INSERT INTO tb_sirkulasi (id_sk,id_buku,id_anggota,tgl_pinjam,status,tgl_kembali) VALUES (
+            '".$_POST['id_sk']."',
+            '".$_POST['id_buku']."',
+            '".$_POST['id_anggota']."',
+            '".$_POST['tgl_pinjam']."',
+            'PIN',
+            '".$tgl_k."')";
+        
+        // Kita gunakan try-catch agar kalau ID kembar (A005), web tidak mati/blank putih
+        try {
+            $query_sirkulasi = mysqli_query($koneksi, $sql_sirkulasi);
+        } catch (Exception $e) {
+            $query_sirkulasi = false; // Jika error, anggap gagal
+        }
 
-    if ($query_simpan){
+        // 2. Jika simpan sirkulasi berhasil, baru simpan ke Log
+        if($query_sirkulasi) {
+            $sql_log = "INSERT INTO log_pinjam (id_buku,id_anggota,tgl_pinjam) VALUES (
+                '".$_POST['id_buku']."',
+                '".$_POST['id_anggota']."',
+                '".$_POST['tgl_pinjam']."')";
+            mysqli_query($koneksi, $sql_log);
+        }
 
-      echo "<script>
-      Swal.fire({title: 'Tambah Data Berhasil',text: '',icon: 'success',confirmButtonText: 'OK'
-      }).then((result) => {
-          if (result.value) {
-              window.location = 'index.php?page=data_sirkul';
-          }
-      })</script>";
-      }else{
-      echo "<script>
-      Swal.fire({title: 'Tambah Data Gagal',text: '',icon: 'error',confirmButtonText: 'OK'
-      }).then((result) => {
-          if (result.value) {
-              window.location = 'index.php?page=add_sirkul';
-          }
-      })</script>";
+        // --- AKHIR PERBAIKAN ---
+
+        if ($query_sirkulasi){
+            echo "<script>
+            Swal.fire({title: 'Tambah Data Berhasil',text: '',icon: 'success',confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.value) {
+                    window.location = 'index.php?page=data_sirkul';
+                }
+            })</script>";
+        }else{
+            echo "<script>
+            Swal.fire({title: 'Tambah Data Gagal',text: 'ID Sirkulasi Mungkin Sudah Ada',icon: 'error',confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.value) {
+                    window.location = 'index.php?page=add_sirkul';
+                }
+            })</script>";
+        }
     }
-  }
-    
+?>
