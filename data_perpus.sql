@@ -30,7 +30,7 @@ CREATE TABLE `log_pinjam` (
   KEY `id_buku` (`id_buku`),
   CONSTRAINT `log_pinjam_ibfk_1` FOREIGN KEY (`id_anggota`) REFERENCES `tb_anggota` (`id_anggota`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `log_pinjam_ibfk_2` FOREIGN KEY (`id_buku`) REFERENCES `tb_buku` (`id_buku`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `log_pinjam` */
 
@@ -38,8 +38,9 @@ insert  into `log_pinjam`(`id_log`,`id_buku`,`id_anggota`,`tgl_pinjam`) values
 (1,'B001','A001','2020-06-23'),
 (2,'B002','A001','2020-06-25'),
 (3,'B003','A002','2020-06-01'),
-(4,'B002','A005','2020-06-23'),
-(5,'B003','A006','2025-12-17');
+(4,'B002','A005','2025-11-20'),
+(5,'B003','A006','2025-12-17'),
+(6,'B005','A003','2025-12-10');
 
 /*Table structure for table `tb_anggota` */
 
@@ -47,22 +48,23 @@ DROP TABLE IF EXISTS `tb_anggota`;
 
 CREATE TABLE `tb_anggota` (
   `id_anggota` varchar(10) NOT NULL,
-  `nama` varchar(20) NOT NULL,
+  `nama` varchar(100) DEFAULT NULL,
   `jekel` enum('Laki-laki','Perempuan') NOT NULL,
-  `kelas` varchar(50) NOT NULL,
+  `jurusan` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `no_hp` varchar(15) NOT NULL,
   PRIMARY KEY (`id_anggota`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_anggota` */
 
-insert  into `tb_anggota`(`id_anggota`,`nama`,`jekel`,`kelas`,`no_hp`) values 
-('A001','Ana','Perempuan','juwana','089987789000'),
-('A002','Bagus','Laki-laki','demak','089987789098'),
-('A003','Citra','Perempuan','demak','085878526048'),
-('A004','Didik','Laki-laki','pati','087789987654'),
-('A005','Edi','Laki-laki','demak','089987789098'),
-('A006','Sura','Perempuan','FBA','0875432912873');
+insert  into `tb_anggota`(`id_anggota`,`nama`,`jekel`,`jurusan`,`no_hp`) values 
+('A001','Putu krisna dwipayana','Laki-laki','Sistem & Teknologi Informasi Bisnis','089987789000'),
+('A002','Made Paramasura','Laki-laki','Sistem & Teknologi Informasi Bisnis','089987789098'),
+('A003','NI Kadek Gelin Adinda Rasti','Perempuan','Manajemen Retail','085878526048'),
+('A004','Muhamad Aldin','Laki-laki','Sistem & Teknologi Informasi Bisnis','087789987654'),
+('A005','Dewa Made Arwinata Dana','Laki-laki','Sistem & Teknologi Informasi Bisnis','089987789098'),
+('A006','Hieronimus Seingo Riti','Laki-laki','Sistem & Teknologi Informasi Bisnis','0875432912873'),
+('A007','Uci Ramdahany','Perempuan','Sistem & Teknologi Informasi Bisnis','081672789892');
 
 /*Table structure for table `tb_buku` */
 
@@ -93,19 +95,18 @@ DROP TABLE IF EXISTS `tb_pengguna`;
 
 CREATE TABLE `tb_pengguna` (
   `id_pengguna` int NOT NULL AUTO_INCREMENT,
-  `nama_pengguna` varchar(20) NOT NULL,
+  `nama_pengguna` varchar(100) DEFAULT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(35) NOT NULL,
-  `level` enum('Administrator','Petugas','','') NOT NULL,
+  `level` enum('Administrator','Petugas') DEFAULT NULL,
   PRIMARY KEY (`id_pengguna`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_pengguna` */
 
 insert  into `tb_pengguna`(`id_pengguna`,`nama_pengguna`,`username`,`password`,`level`) values 
-(1,'Ryan','ryan','202cb962ac59075b964b07152d234b70','Administrator'),
-(5,'Ryan Pradnyana','Shiro','12345','Administrator'),
-(6,'Naufal Putra','naufal','292537d8c473fe207a85cdf61fab4d0f','Petugas');
+(6,'Naufal Putra','naufal','292537d8c473fe207a85cdf61fab4d0f','Petugas'),
+(7,'I Made Ryan Pradnyana','Ryan Pradnyana','0192023a7bbd73250516f069df18b500','Administrator');
 
 /*Table structure for table `tb_sirkulasi` */
 
@@ -130,6 +131,7 @@ CREATE TABLE `tb_sirkulasi` (
 
 insert  into `tb_sirkulasi`(`id_sk`,`id_buku`,`id_anggota`,`tgl_pinjam`,`tgl_kembali`,`status`,`tgl_dikembalikan`) values 
 ('A005','B003','A006','2025-12-17','2025-12-24','KEM','2025-12-17'),
+('A006','B005','A003','2025-12-10','2025-12-17','PIN',NULL),
 ('S001','B001','A001','2020-06-23','2020-06-30','KEM','2025-12-15'),
 ('S002','B002','A001','2020-06-13','2020-06-20','PIN',NULL),
 ('S003','B003','A002','2020-06-22','2020-06-29','PIN',NULL),
