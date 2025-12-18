@@ -41,134 +41,6 @@ include "inc/koneksi.php";
 	<link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
 
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-	
-	<!-- Custom CSS for modifications -->
-	<style>
-		/* Logo spacing fix */
-		.logo-lg img {
-			margin-right: 10px;
-		}
-		
-		/* Settings dropdown button */
-		.settings-dropdown .dropdown-toggle {
-			background-color: transparent;
-			border: none;
-			color: white;
-			padding: 10px 15px;
-			border-radius: 4px;
-			transition: background-color 0.3s;
-		}
-		
-		.settings-dropdown .dropdown-toggle:hover,
-		.settings-dropdown .dropdown-toggle:focus {
-			background-color: rgba(255,255,255,0.15);
-		}
-		
-		.settings-dropdown .dropdown-toggle i {
-			font-size: 18px;
-		}
-		
-		/* Clean dropdown menu */
-		.settings-dropdown .dropdown-menu {
-			right: 0;
-			left: auto;
-			min-width: 280px;
-			border-radius: 8px;
-			box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-			border: none;
-			padding: 0;
-			margin-top: 8px;
-		}
-		
-		/* User header in dropdown */
-		.settings-dropdown .user-dropdown-header {
-			background: linear-gradient(135deg, #00a65a 0%, #00c86f 100%);
-			padding: 30px 20px;
-			text-align: center;
-			border-radius: 8px 8px 0 0;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			min-height: 100px;
-		}
-		
-		.settings-dropdown .user-dropdown-header img {
-			width: 60px;
-			height: 60px;
-			border: 3px solid white;
-			margin-bottom: 12px;
-		}
-		
-		.settings-dropdown .user-dropdown-header .user-name {
-			color: white;
-			font-size: 16px;
-			font-weight: 600;
-			margin: 0;
-			padding: 0;
-		}
-		
-		.settings-dropdown .user-dropdown-header .user-role {
-			color: rgba(255,255,255,0.9);
-			font-size: 13px;
-			margin-top: 5px;
-		}
-		
-		/* Menu items */
-		.settings-dropdown .dropdown-menu-items {
-			padding: 8px 0;
-		}
-		
-		.settings-dropdown .dropdown-menu-item {
-			display: block;
-			padding: 12px 20px;
-			color: #333;
-			text-decoration: none;
-			transition: background-color 0.2s;
-			border-left: 3px solid transparent;
-		}
-		
-		.settings-dropdown .dropdown-menu-item:hover {
-			background-color: #f5f5f5;
-			border-left-color: #00a65a;
-		}
-		
-		.settings-dropdown .dropdown-menu-item i {
-			width: 20px;
-			margin-right: 10px;
-			color: #00a65a;
-		}
-		
-		/* Icon for user image in menu */
-		.settings-dropdown .menu-user-icon {
-			width: 20px;
-			height: auto;
-			margin-right: 10px;
-			color: #00a65a;
-		}
-		
-		/* Divider */
-		.settings-dropdown .dropdown-divider {
-			height: 1px;
-			background-color: #e5e5e5;
-			margin: 8px 0;
-		}
-		
-		/* Logout button */
-		.settings-dropdown .logout-item {
-			color: #d9534f;
-			font-weight: 500;
-		}
-		
-		.settings-dropdown .logout-item:hover {
-			background-color: #fef5f5;
-			border-left-color: #d9534f;
-		}
-		
-		.settings-dropdown .logout-item i {
-			color: #d9534f;
-		}
-	</style>
 </head>
 
 <body class="hold-transition skin-green sidebar-mini">
@@ -186,57 +58,56 @@ include "inc/koneksi.php";
 					<b>SIPERPUS</b>
 				</span>
 			</a>
-			
 			<!-- Header Navbar: style can be found in header.less -->
-			<nav class="navbar navbar-static-top" style="display: flex; justify-content: space-between; align-items: center; margin: 0;">
-				<div style="display: flex; align-items: center; margin-left: -750px; ">
-					<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" style="float: none; padding: 15px;">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</a>
+			<nav class="navbar navbar-static-top">
+				<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
 
-					<div style="color: white; font-size: 16px; white-space: nowrap;">
-						<b>Sistem Informasi Perpustakaan</b>
-					</div>
+				<div style="float: left; padding: 15px 15px; color: white; font-size: 16px;">
+					<b>Sistem Informasi Perpustakaan</b>
 				</div>
 
-				<div class="navbar-custom-menu" style="float: none; margin: 0; margin-right: -750px;">
-					<ul class="nav navbar-nav" style="margin: 0;">
-						<!-- Settings Dropdown -->
-						<li class="dropdown settings-dropdown">
+				<div class="navbar-custom-menu">
+					<ul class="nav navbar-nav">
+						<!-- User Account Menu -->
+						<li class="dropdown user user-menu">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<i class="fa fa-cog"></i>
-								<i class="fa fa-angle-down" style="margin-left: 5px; font-size: 14px;"></i>
+								<img src="dist/img/avatar.png" class="user-image" alt="User Image">
+								<span class="hidden-xs"><?php echo $data_nama; ?></span>
+								<i class="fa fa-cog" style="margin-left: 5px;"></i>
 							</a>
-							<ul class="dropdown-menu">
-								<!-- User Header -->
-								<li class="user-dropdown-header">
-									<img src="dist/img/avatar.png" class="img-circle" alt="User Image">
-									<p class="user-name"><?php echo $data_nama; ?></p>
-									<small class="user-role"><?php echo $data_level; ?></small>
+							<ul class="dropdown-menu" style="width: 280px;">
+								<!-- User image -->
+								<li class="user-header" style="background-color: #00a65a; height: 150px;">
+									<img src="dist/img/avatar.png" class="img-circle" style="width: 80px; height: 80px; border: 3px solid rgba(255,255,255,0.3);" alt="User Image">
+									<p style="margin-top: 10px; font-size: 16px;">
+										<?php echo $data_nama; ?>
+										<small style="display: block; margin-top: 5px; font-size: 13px;"><?php echo $data_level; ?></small>
+									</p>
 								</li>
 								
-								<!-- Menu Items -->
-								<li class="dropdown-menu-items">
-									<?php if ($data_level == "Administrator") { ?>
-									<a href="?page=MyApp/data_pengguna" class="dropdown-menu-item">
-										<i class="fa fa-users menu-user-icon"></i>
-										<span>Pengguna Sistem</span>
-									</a>
-									<?php } ?>
-								</li>
-								
-								<!-- Divider -->
-								<li class="dropdown-divider"></li>
-								
-								<!-- Logout -->
-								<li class="dropdown-menu-items">
-									<a href="logout.php" onclick="return confirm('Anda yakin keluar dari aplikasi ?')" class="dropdown-menu-item logout-item">
-										<i class="fa fa-sign-out"></i>
-										<span>Logout</span>
-									</a>
+								<!-- Menu Body -->
+								<li>
+									<ul class="menu" style="padding: 0; margin: 0; list-style: none;">
+										<?php if ($data_level == "Administrator") { ?>
+										<li style="border-bottom: 1px solid #f4f4f4;">
+											<a href="?page=MyApp/data_pengguna" style="padding: 15px 20px; display: block; color: #444; text-decoration: none;">
+												<i class="fa fa-users" style="color: #00a65a; width: 25px;"></i> 
+												<span>Pengguna Sistem</span>
+											</a>
+										</li>
+										<?php } ?>
+										<li>
+											<a href="logout.php" onclick="return confirm('Anda yakin keluar dari aplikasi ?')" style="padding: 15px 20px; display: block; color: #dd4b39; text-decoration: none;">
+												<i class="fa fa-sign-out" style="color: #dd4b39; width: 25px;"></i> 
+												<span>Logout</span>
+											</a>
+										</li>
+									</ul>
 								</li>
 							</ul>
 						</li>
@@ -348,7 +219,7 @@ include "inc/koneksi.php";
 							<ul class="treeview-menu">
 								<li>
 									<a href="?page=laporan_sirkulasi">
-										<i class="fa fa-file"></i>Laporan Sirkulasi</a>
+										<i class="fa fa-file"></i>Laporan Pengelolaan</a>
 								</li>
 							</ul>
 						</li>
@@ -390,7 +261,7 @@ include "inc/koneksi.php";
 						<li class="treeview">
 							<a href="?page=data_sirkul">
 								<i class="fa fa-refresh"></i>
-								<span>Sirkulasi</span>
+								<span>Pengelolaan</span>
 								<span class="pull-right-container">
 								</span>
 							</a>
@@ -430,7 +301,7 @@ include "inc/koneksi.php";
 
 								<li>
 									<a href="?page=laporan_sirkulasi">
-										<i class="fa fa-file"></i>Laporan Sirkulasi</a>
+										<i class="fa fa-file"></i>Laporan Pengelolaan</a>
 								</li>
 							</ul>
 						</li>
@@ -567,26 +438,23 @@ include "inc/koneksi.php";
 			<!-- /.content -->
 		</div>
 
-	
+		<!-- /.content-wrapper 
 
 		<footer class="main-footer">
 			<div class="pull-right hidden-xs">
 			</div>
 			<strong>Copyright &copy;
-				<a href="https://www.facebook.com/">Ryan Pradnyana</a>.</strong> All rights reserved.
+				<a href="https://www.facebook.com/">Muhammad Ivan Setiawan</a>.</strong> All rights reserved.
 		</footer>
 		<div class="control-sidebar-bg"></div>
 		-->
 
-	
+		<!-- ./wrapper -->
 
 		<!-- jQuery 2.2.3 -->
 		<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
-			 
 		<!--Bootstrap 3.3.6 -->
-			
-		<script src = "bootstrap/js/bootstrap.min.js"></script>
-		
+		<script src="bootstrap/js/bootstrap.min.js"></script>
 
 		<script src="plugins/select2/select2.full.min.js"></script>
 		<!-- DataTables -->

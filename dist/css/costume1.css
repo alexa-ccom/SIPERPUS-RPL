@@ -1,0 +1,58 @@
+<style>
+    /* Mengatasi bentrokan AdminLTE dengan Flexbox */
+    .main-header .navbar {
+        margin-left: 0 !important; /* Menghilangkan margin agar rapat ke kiri */
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        height: 50px; /* Tinggi standar navbar AdminLTE */
+    }
+
+    /* Container judul dan toggle */
+    /* .navbar-left-group {
+        display: flex;
+        align-items: center;
+        height: 100%;
+    } */
+
+    /* Memperbaiki ukuran dan posisi setting */
+    .navbar-custom-menu {
+        float: none !important;
+        margin-right: 10px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar-nav {
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: row !important;
+    }
+
+    .settings-dropdown .dropdown-toggle {
+        height: 50px;
+        display: flex;
+        align-items: center;
+        padding: 0 15px;
+        color: #fff;
+    }
+
+    /* Judul Aplikasi */
+    .app-title {
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        margin-left: 10px;
+        white-space: nowrap;
+    }
+
+    /* Sisanya tetap gunakan CSS dropdown Anda yang sudah bagus */
+    .settings-dropdown .dropdown-menu {
+        right: 0;
+        left: auto;
+        min-width: 250px;
+        margin-top: 0;
+    }
+    /* ... (CSS header dropdown Anda lainnya di bawahnya) ... */
+</style>

@@ -1,12 +1,12 @@
 <section class="content-header">
 	<h1 style="text-align:center;">
-		Laporan Sirkulasi
+		Laporan Pengelolaan
 	</h1>
 	<ol class="breadcrumb">
 		<li>
 			<a href="index.php">
 				<i class="fa fa-home"></i>
-				<b>Si Perpustakaan</b>
+				<b>SiPerpus</b>
 			</a>
 		</li>
 	</ol>
