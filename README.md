@@ -17,4 +17,3 @@ open terminal
 git push origin main
 
 
-
