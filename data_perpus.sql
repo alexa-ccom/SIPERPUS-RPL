@@ -30,7 +30,7 @@ CREATE TABLE `log_pinjam` (
   KEY `id_buku` (`id_buku`),
   CONSTRAINT `log_pinjam_ibfk_1` FOREIGN KEY (`id_anggota`) REFERENCES `tb_anggota` (`id_anggota`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `log_pinjam_ibfk_2` FOREIGN KEY (`id_buku`) REFERENCES `tb_buku` (`id_buku`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `log_pinjam` */
 
@@ -40,7 +40,9 @@ insert  into `log_pinjam`(`id_log`,`id_buku`,`id_anggota`,`tgl_pinjam`) values
 (3,'B003','A002','2020-06-01'),
 (4,'B002','A005','2025-11-20'),
 (5,'B003','A006','2025-12-17'),
-(6,'B005','A003','2025-12-10');
+(6,'B005','A003','2025-12-10'),
+(7,'A010','A009','2025-12-12'),
+(8,'B005','A010','2025-12-05');
 
 /*Table structure for table `tb_anggota` */
 
@@ -64,7 +66,10 @@ insert  into `tb_anggota`(`id_anggota`,`nama`,`jekel`,`jurusan`,`no_hp`) values
 ('A004','Muhamad Aldin','Laki-laki','Sistem & Teknologi Informasi Bisnis','087789987654'),
 ('A005','Dewa Made Arwinata Dana','Laki-laki','Sistem & Teknologi Informasi Bisnis','089987789098'),
 ('A006','Hieronimus Seingo Riti','Laki-laki','Sistem & Teknologi Informasi Bisnis','0875432912873'),
-('A007','Uci Ramdahany','Perempuan','Sistem & Teknologi Informasi Bisnis','081672789892');
+('A007','Uci Ramdahany','Perempuan','Sistem & Teknologi Informasi Bisnis','081672789892'),
+('A008','Kadek Widhi Mula Dharma','Laki-laki','Sistem & Teknologi Informasi Bisnis','098766732819'),
+('A009','Edo Ardo Purnomo','Laki-laki','Sistem & Teknologi Informasi Bisnis','0817627891112'),
+('A010','Gede Dena Yasmita','Laki-laki','Sistem & Teknologi Informasi Bisnis','08762221780');
 
 /*Table structure for table `tb_buku` */
 
@@ -76,18 +81,21 @@ CREATE TABLE `tb_buku` (
   `pengarang` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `penerbit` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `th_terbit` year NOT NULL,
+  `foto_buku` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_buku`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_buku` */
 
-insert  into `tb_buku`(`id_buku`,`judul_buku`,`pengarang`,`penerbit`,`th_terbit`) values 
-('A006','Buku Sakti Pemrograman Web Seri PHP','Mundzir MF','Anak Hebat Indonesia',2018),
-('B001','Matematika','anastasya','armi print',2010),
-('B002','RPL 2','Eko','UMK',2020),
-('B003','C++','Anton','Toni Perc',2010),
-('B004','CI 4','anastasya','armi print',2009),
-('B005','Data Mining','Anton','Toni Perc',2020);
+insert  into `tb_buku`(`id_buku`,`judul_buku`,`pengarang`,`penerbit`,`th_terbit`,`foto_buku`) values 
+('A007','Buku Sakti Pemrogaman Web: HTML, CSS, PHP, MYSQL & Javascript','Didik Setiawan','Start Up',2018,'A007_1766036068.png'),
+('A008','Buku Ensiklopedia Sains & Teknologi: Kehidupan Sehari-hari','Edu Comics','Bhuana Ilmu Populer',2023,'A008_1766037086.png'),
+('A009','Buku Ajar Interior: Azas Lingkungan Dalam','Dyan Agustin, ST.MT','Indomedia Pustaka',2021,'A009_1766037533.png'),
+('A010','Pengantar Desain Komunikasi Visual','RICKY W. PUTRA','Penerbit Andi',2021,'A010_1766038896.png'),
+('B001','Matematika Diskrit Dan Aplikasinya Pada Ilmu Komputer','Jong Jek Siang','Penerbit Andi',2019,'B001_1766038675.png'),
+('B002','Rekayasa Perangkat Lunak Berorientasi Objek Menggunakan PHP','PROF. DR. IR. RIRI FITRI SARI, M.M., M.SC., DTM, SMIEEE','Penerbit Andi',2021,'B002_1766038246.png'),
+('B003','100 Kasus Pemrograman Visual C#','Dr. Eng RH. Sianipar','Penerbit Andi',2017,'B003_1766038007.png'),
+('B005','Data Mining Dan Machine Learning Menggunakan Matlab Dan Python','Rahmadya Trias Handayanto Herlawati','Informatka',2020,'B005_1766037775.png');
 
 /*Table structure for table `tb_pengguna` */
 
@@ -131,7 +139,9 @@ CREATE TABLE `tb_sirkulasi` (
 
 insert  into `tb_sirkulasi`(`id_sk`,`id_buku`,`id_anggota`,`tgl_pinjam`,`tgl_kembali`,`status`,`tgl_dikembalikan`) values 
 ('A005','B003','A006','2025-12-17','2025-12-24','KEM','2025-12-17'),
-('A006','B005','A003','2025-12-10','2025-12-17','PIN',NULL),
+('A006','B005','A003','2025-12-10','2025-12-17','KEM',NULL),
+('A007','A010','A009','2025-12-12','2025-12-19','PIN',NULL),
+('A008','B005','A010','2025-12-05','2025-12-12','PIN',NULL),
 ('S001','B001','A001','2020-06-23','2020-06-30','KEM','2025-12-15'),
 ('S002','B002','A001','2020-06-13','2020-06-20','PIN',NULL),
 ('S003','B003','A002','2020-06-22','2020-06-29','PIN',NULL),
