@@ -1,7 +1,5 @@
 <?php
 include "inc/koneksi.php";
-
-// Gunakan MAX untuk mencari nilai tertinggi yang benar-benar angka
 $sql = mysqli_query($koneksi, "SELECT MAX(RIGHT(id_buku, 3)) AS nomor FROM tb_buku");
 $data = mysqli_fetch_array($sql);
 
@@ -80,13 +78,13 @@ $ID_BARU_OTOMATIS = "A" . str_pad($next, 3, "0", STR_PAD_LEFT);
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
-			<!-- general form elements -->
+			
 			<div class="box box-info">
 				<div class="box-header with-border">
 					<h3 class="box-title">Tambah Buku</h3>
 				</div>
 				<!-- /.box-header -->
-				<!-- form start -->
+				<!-- form -->
 				<form action="" method="post" enctype="multipart/form-data">
 					<div class="box-body">
 						<div class="row">
@@ -178,7 +176,7 @@ function previewImage(event) {
 			$ekstensi = pathinfo($nama_file, PATHINFO_EXTENSION);
 			
 			// Validasi ekstensi file
-			$ekstensi_allowed = array('jpg', 'jpeg', 'png', 'gif');
+			$ekstensi_allowed = array('jpg', 'jpeg', 'png', 'gif', 'avif');
 			if (in_array(strtolower($ekstensi), $ekstensi_allowed)) {
 				// Validasi ukuran file (max 2MB)
 				if ($ukuran_file <= 2000000) {
@@ -186,7 +184,7 @@ function previewImage(event) {
 					$foto_buku = $_POST['id_buku'] . '_' . time() . '.' . $ekstensi;
 					$path = "foto_buku/" . $foto_buku;
 					
-					// Buat folder jika belum ada
+					
 					if (!file_exists("foto_buku")) {
 						mkdir("foto_buku", 0777, true);
 					}

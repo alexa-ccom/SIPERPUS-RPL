@@ -1,5 +1,4 @@
 <?php
-//Mulai Sesion
 session_start();
 if (isset($_SESSION["ses_username"]) == "") {
 	header("location: login.php");

@@ -18,11 +18,11 @@
     flex-wrap: wrap;
 }
 
-/* Memaksa kartu untuk selalu setinggi container induknya */
+
 .book-card {
     display: flex;
     flex-direction: column;
-    height: 100%; /* SANGAT PENTING */
+    height: 100%; 
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -41,7 +41,6 @@
     width: 100%;
     height: 280px;
     display: flex;
-    /* Ubah align-items ke flex-end agar teks turun ke bawah */
     align-items: flex-end; 
     justify-content: center;
     position: relative;
@@ -71,16 +70,14 @@
     font-size: 16px;
     font-weight: bold;
     text-align: center;
-    /* Sesuaikan padding dan margin */
     padding: 15px 10px;
-    margin-bottom: 20px; /* Memberi jarak sedikit dari dasar cover */
+    margin-bottom: 20px;
     z-index: 1;
     position: relative;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     line-height: 1.4;
-    /* Transparansi sedikit gelap agar teks terbaca jelas di atas gambar */
     background: rgba(0,0,0,0.5); 
-    width: 90%; /* Lebar kotak teks */
+    width: 90%; 
     border-radius: 5px;
 }
 
@@ -99,22 +96,21 @@
 
 .book-details {
     padding: 15px;
-    flex-grow: 1; /* Membuat area teks mengambil sisa ruang yang ada */
+    flex-grow: 1; 
 }
 
 .book-info {
     margin-bottom: 5px;
     font-size: 13px;
     color: #666;
-    /* Mencegah teks meluber */
     word-wrap: break-word; 
 }
 
 .book-info {
-    min-height: 20px; /* Menjaga konsistensi jarak antar baris info */
+    min-height: 20px; 
 }
 .book-actions {
-    margin-top: auto; /* Memaksa footer ke bawah */
+    margin-top: auto;
     padding: 12px 15px;
     background: #f8f9fa;
     border-top: 1px solid #e9ecef;
@@ -153,7 +149,7 @@
 }
 
 .search-box.active {
-    width: 100%; /* Memanjang saat diklik */
+    width: 100%; 
     border-color: #3c8dbc;
 }
 

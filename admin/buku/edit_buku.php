@@ -160,7 +160,7 @@
 					</div>
 				</form>
 			</div>
-			<!-- /.box -->
+			
 </section>
 
 <script>

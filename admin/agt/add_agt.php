@@ -1,6 +1,5 @@
 <?php
-//kode 9 digit
-  
+
 $carikode = mysqli_query($koneksi,"SELECT id_anggota FROM tb_anggota order by id_anggota desc");
 $datakode = mysqli_fetch_array($carikode);
 $kode = $datakode['id_anggota'];
@@ -9,10 +8,10 @@ $tambah = (int) $urut + 1;
 
 if (strlen($tambah) == 1){
     $format = "A"."00".$tambah;
-}else if (strlen($tambah) == 2){
-    $format = "A"."0".$tambah;
-}else if (strlen($tambah) == 3){ 
-    $format = "A".$tambah;
+		}else if (strlen($tambah) == 2){
+			$format = "A"."0".$tambah;
+		}else if (strlen($tambah) == 3){ 
+			$format = "A".$tambah;
 }
 ?>
 
@@ -89,8 +88,6 @@ if (strlen($tambah) == 1){
 
 <?php
     if (isset ($_POST['Simpan'])){
-        
-        // Pastikan nama kolom di database sesuai ('jurusan' atau 'kelas')
         $sql_simpan = "INSERT INTO tb_anggota (id_anggota,nama,jekel,jurusan,no_hp) VALUES (
            '".$_POST['id_anggota']."',
           '".$_POST['nama']."',
